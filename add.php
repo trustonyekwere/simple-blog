@@ -1,5 +1,7 @@
 <?php 
 
+    include ('config/db_connect.php');
+
     $email = $title = $content = ''; // initialize variables to empty strings to ensure form is static upon entry
 
     $errors = array('email' => '', 'title' => '', 'content' => '');
@@ -42,16 +44,30 @@
         } 
         //end of POST check
 
-        // Here you would typically process the data, e.g., save it to a database
-
-        // For now, just redirect to the homepage after submission if no errors
+        // Redirect to the homepage after submission if no errors
         if (array_filter($errors)) {
             //redirect nowhere with errors
             // echo 'There are errors in the form';
         } else {
             //redirect to homepage without errors
             // echo 'form is valid';
-            header('location: index.php');
+            
+            $email = mysqli_real_escape_string($connect, $_POST['email']);
+            $title = mysqli_real_escape_string($connect, $_POST['title']);
+            $content = mysqli_real_escape_string($connect, $_POST['content']);
+
+            // create sql
+            $sql = "INSERT INTO posts(title, email, content) VALUES('$title', '$email', '$content' )";
+
+            // save to db and check
+            if(mysqli_query($connect, $sql)) {
+                // success
+                header('location: index.php');
+            } else {
+                // error
+                'query error:' . mysqli_error($connect);
+            }
+
         }
     }
 

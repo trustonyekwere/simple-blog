@@ -1,15 +1,9 @@
 <?php 
 
-    // connect to database
-    $connect = mysqli_connect('localhost', 'trust', 'teelocalhost1', 'blog_db');
-
-    // check to ensure connection
-    if (!$connect) {
-        echo 'connection error: ' . mysqli_connect_error();
-    }
+    include ('config/db_connect.php');
 
     // write query for all posts
-    $sql = 'SELECT * email, title, content FROM posts';
+    $sql = 'SELECT * FROM posts';
 
     // make query and get result
     $result = mysqli_query($connect, $sql);
@@ -23,7 +17,7 @@
     // close connection
     mysqli_close($connect);
 
-    print_r($posts);
+    // print_r($posts);
 
 ?>
 
@@ -35,7 +29,24 @@
     <main class="container my-5">
         <h1 class="mb-4">Welcome to Simple Blog</h1>
         <p class="lead">Your go-to platform for sharing thoughts and ideas.</p>
-        <a href="/simple-blog/add.php" class="btn btn-primary mt-3">Create New Post</a>
+        <a href="/simple-blog/add.php" class="btn btn-primary mt-3">Create New Post</a><br><br>
+        <div class="container">
+            <div class="row">
+
+                <?php foreach ($posts as $post) : ?> <!-- replace } with : and then the closing one with endforeach; -->  
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card shadow-none">
+                            <div class="card-body text-center">
+                                <h6><?php echo htmlspecialchars($post['title']); ?></h6>
+                                <div><?php echo htmlspecialchars($post['content']); ?></div><hr>
+                                <a href="" class="btn btn-primary">more info</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+        </div>
     </main>
 
     <?php include('templates/footer.php'); ?>
