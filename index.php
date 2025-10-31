@@ -3,7 +3,7 @@
     include ('config/db_connect.php');
 
     // write query for all posts
-    $sql = 'SELECT * FROM posts';
+    $sql = 'SELECT title, content, id FROM posts';
 
     // make query and get result
     $result = mysqli_query($connect, $sql);
@@ -29,7 +29,7 @@
     <main class="container my-5">
         <h1 class="mb-4">Welcome to Simple Blog</h1>
         <p class="lead">Your go-to platform for sharing thoughts and ideas.</p>
-        <a href="/simple-blog/add.php" class="btn btn-primary mt-3">Create New Post</a><br><br>
+        <a href="/simple-blog/add.php" class="btn btn-secondary mt-3">Create New Post</a><br><br>
         <div class="container">
             <div class="row">
 
@@ -39,7 +39,7 @@
                             <div class="card-body text-center">
                                 <h6><?php echo htmlspecialchars($post['title']); ?></h6>
                                 <div><?php echo htmlspecialchars($post['content']); ?></div><hr>
-                                <a href="" class="btn btn-primary">more info</a>
+                                <a href="details.php?id=<?php echo $post['id'] ?>" class="btn btn-primary">more info</a>
                             </div>
                         </div>
                     </div>
