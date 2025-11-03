@@ -27,7 +27,7 @@
             $errors['title'] = "A title is required <br /> ";
         } else {
             $title = $_POST['title'];
-            if (!preg_match('/^[a-zA-Z\s]+$/', $title)) {
+            if (!preg_match('/^[a-zA-Z\s.,0-9]+$/', $title)) {
                 $errors['title'] = "Title must be letters and spaces only <br /> ";
             }
             // echo htmlspecialchars($_POST['title']); // htmlspecialchars to prevent XSS (injecting coding virus)
@@ -38,7 +38,7 @@
             $errors['content'] = "Content is required <br /> ";
         } else {
             $content = $_POST['content'];
-            if (!preg_match('/^[a-zA-Z\s]+$/', $content)) {
+            if (!preg_match('/^[a-zA-Z\s.,0-9]+$/', $content)) {
                 $errors['content'] = "Content must be letters and spaces only <br /> ";
             }
         } 
@@ -101,7 +101,7 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="mb-3">
                                 <label for="" class="form-label">Post Content</label>
-                                <input type="text" value="<?php echo htmlspecialchars($content) ?>" class="form-control" name="content">
+                                <textarea name="content" class="form-control" value="<?php echo htmlspecialchars($content) ?>" type="text" rows="5" ></textarea>
                                 <div class="text-danger"><?php echo $errors['content']; ?></div>
                             </div>
                         </div>

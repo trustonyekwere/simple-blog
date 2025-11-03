@@ -34,8 +34,9 @@
             <div class="row">
 
                 <?php foreach ($posts as $post) : ?> <!-- replace } with : and then the closing one with endforeach; -->  
-                    <div class="col-md-3 col-sm-6">
+                    <div class="col-md-4 col-sm-6 py-3">
                         <div class="card shadow-none">
+                            <img src="img/pfpotw 3'.jpg" alt="">
                             <div class="card-body text-center">
                                 <h6><?php echo htmlspecialchars($post['title']); ?></h6>
                                 <div><?php echo htmlspecialchars($post['content']); ?></div><hr>
