@@ -82,7 +82,7 @@
         <section class="justify-content-center d-flex">
             <div class="card p-3 border-0 align-content-center align-items-center w-75">
                 <h2 class="text-center pt-3">Add a Post</h2>
-                <form action="" method="POST" class="bg-white mt-3">
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST" class="bg-white mt-3">
                     <div class="row px-4 g-3">
                         <div class="col-md-12 col-sm-12">
                             <div class="mb-3">
